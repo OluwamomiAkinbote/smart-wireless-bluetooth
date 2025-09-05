@@ -134,7 +134,7 @@ const SalesHeader = () => {
             </div>
             <div className="flex items-center">
               <Shield className="text-blue-600 mr-2" />
-              <span>1-Year Warranty</span>
+              <span>6-Months Warranty</span>
             </div>
             <div className="flex items-center">
               <Truck className="text-blue-600 mr-2" />
