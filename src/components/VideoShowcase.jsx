@@ -2,7 +2,7 @@
 
 const VideoShowcase = () => {
   const video = {
-    videoUrl: "/assets/Video 3.mp4",
+    videoUrl: "/assets/video 3.mp4",
     duration: "1:30"
   };
 
