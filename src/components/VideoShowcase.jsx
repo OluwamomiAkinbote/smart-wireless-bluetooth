@@ -32,10 +32,9 @@ const VideoShowcase = () => {
             <video
               src={video.videoUrl}
               autoPlay
-              muted
               loop
               playsInline
-              controls={true}
+              controls={false}
               className="w-full h-full object-cover"
               poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23f1f5f9' viewBox='0 0 400 225'%3E%3Crect width='400' height='225'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%2364748b' font-size='14'%3ELoading...%3C/text%3E%3C/svg%3E"
             />
