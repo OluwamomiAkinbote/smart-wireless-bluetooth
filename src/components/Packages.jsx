@@ -5,7 +5,7 @@ import Image from "next/image";
 import { 
   FaShippingFast, FaShieldAlt, FaCheckCircle, FaPercentage, 
   FaClock, FaHeadphones, FaSyncAlt, FaWhatsapp, FaPhone,
-  FaFire, FaStar, FaExclamationTriangle
+  FaFire, FaStar, FaExclamationTriangle, FaArrowDown
 } from "react-icons/fa";
 
 const Packages = () => {
@@ -78,9 +78,21 @@ const Packages = () => {
     window.location.href = "tel:+2348051230133";
   };
 
+  // Function to scroll to contact section
+  const scrollToContact = () => {
+    const section = document.getElementById("contact-us");
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
-    <section className="py-16 px-4 bg-gradient-to-b from-gray-50 to-white border-t-4 border-orange-500" id="packages">
-      <div className="max-w-6xl mx-auto">
+    <section className=" border-t-4 border-orange-500 py-16 px-4 bg-gradient-to-br from-blue-50 via-white to-purple-50 relative overflow-hidden" id="packages">
+      {/* Background decorative elements */}
+      <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-blue-100 rounded-full -translate-y-1/2 translate-x-1/3 opacity-50"></div>
+      <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-purple-100 rounded-full translate-y-1/2 -translate-x-1/3 opacity-50"></div>
+      
+      <div className="max-w-6xl mx-auto relative z-10">
         {/* Section Header */}
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 bg-gradient-to-r from-red-500 to-orange-500 text-white px-5 py-2 rounded-full text-sm font-medium mb-4">
@@ -100,7 +112,7 @@ const Packages = () => {
               key={index}
               className={`relative rounded-xl overflow-hidden transition-all duration-300 
               ${pkg.popular 
-                ? "border-2 border-orange-500 transform hover:scale-105 shadow-xl bg-white" 
+                ? "border-4 border-orange-500 transform hover:scale-105 shadow-xl bg-white" 
                 : "border border-gray-200 bg-white shadow-lg"}`}
             >
               {pkg.popular && (
@@ -144,7 +156,7 @@ const Packages = () => {
                 </div>
 
                 {/* Features List */}
-                <ul className="space-y-3 mb-8 flex-grow">
+                <ul className="space-y-3 mb-4 flex-grow">
                   {pkg.features.map((feature, i) => (
                     <li key={i} className="flex items-start gap-3 text-gray-700">
                       {feature.icon && <span className="mt-0.5">{feature.icon}</span>}
@@ -155,31 +167,28 @@ const Packages = () => {
                   ))}
                 </ul>
 
-                {/* Dual Buttons */}
-                <div className="flex flex-col gap-3">
-                  
-                  {/* Regular CTA Button */}
-                  <button
-                    onClick={() => handleWhatsAppOrder(pkg.name, pkg.price)}
-                    className={`w-full py-3 rounded-lg font-bold transition-colors border
-                      ${pkg.popular 
-                      ? "bg-orange-500 hover:bg-orange-600 text-white" 
-                      : "bg-blue-600 hover:bg-blue-700 text-white"}`}
-                  >
-                    {pkg.cta}
-                  </button>
-                        {/* WhatsApp Button */}
-                        <button
-                          onClick={() => handleWhatsAppOrder(pkg.name, pkg.price)}
-                          className={`w-full py-3 rounded-lg font-bold transition-all duration-300 flex items-center justify-center gap-2
-                          ${pkg.popular 
-                            ? "bg-green-600 hover:bg-green-700 text-white shadow-md" 
-                            : "bg-green-600 hover:bg-green-700 text-white"}`}
-                        >
-                          <FaWhatsapp className="text-lg" />
-                          Order on WhatsApp
-                        </button>
-                </div>
+                {/* Regular CTA Button */}
+                <button
+                  onClick={scrollToContact}
+                  className={`w-full py-3 rounded-lg font-bold transition-colors border mb-3
+                  ${pkg.popular 
+                    ? "bg-orange-500 hover:bg-orange-600 text-white" 
+                    : "bg-blue-600 hover:bg-blue-700 text-white"}`}
+                >
+                  {pkg.cta} <FaArrowDown className="inline-block ml-1" />
+                </button>
+                
+                {/* WhatsApp Button - Moved to bottom */}
+                <button
+                  onClick={() => handleWhatsAppOrder(pkg.name, pkg.price)}
+                  className={`w-full py-3 rounded-lg font-bold transition-all duration-300 flex items-center justify-center gap-2
+                  ${pkg.popular 
+                    ? "bg-green-600 hover:bg-green-700 text-white shadow-md" 
+                    : "bg-green-600 hover:bg-green-700 text-white"}`}
+                >
+                  <FaWhatsapp className="text-lg" />
+                  Order on WhatsApp
+                </button>
               </div>
             </div>
           ))}
