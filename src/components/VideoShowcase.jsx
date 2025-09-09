@@ -1,87 +1,148 @@
 'use client'
 
+import { useState, useRef } from 'react'
+
 const VideoShowcase = () => {
-  const video = {
-    videoUrl: "/assets/video 3.mp4",
-    duration: "1:30"
-  };
+  const [isPlaying, setIsPlaying] = useState(false)
+  const videoRef = useRef(null)
+
+  const handlePlayVideo = () => {
+    if (videoRef.current) {
+      videoRef.current.play()
+      setIsPlaying(true)
+    }
+  }
+
+  const handlePauseVideo = () => {
+    if (videoRef.current) {
+      videoRef.current.pause()
+      setIsPlaying(false)
+    }
+  }
 
   const handleScrollToPackages = () => {
-    const section = document.getElementById("packages");
+    const section = document.getElementById("packages")
     if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
+      section.scrollIntoView({ behavior: "smooth" })
     }
-  };
+  }
 
   return (
     <section className="w-full bg-gradient-to-br from-slate-50 to-gray-100 py-20 px-4 sm:px-6">
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-6xl mx-auto">
+        
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent mb-6">
-            See It In Action
+          <h2 className="text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent mb-6">
+            Your Product, Your Advantage
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Watch our product demo to discover how it can transform your daily routine
+          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Watch the demo and see how this product makes life easier, smarter, and better for you.
           </p>
         </div>
 
-        {/* Video Container (No Shadow) */}
-        <div className="relative bg-white rounded-2xl overflow-hidden border border-gray-200">
+        {/* Video Container */}
+        <div className="relative bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-xl">
           <div className="aspect-video relative">
             <video
-              src={video.videoUrl}
-              autoPlay
+              ref={videoRef}
+              src="/assets/video 3.mp4"
               loop
               playsInline
-              controls={true}
               className="w-full h-full object-cover"
-              poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23f1f5f9' viewBox='0 0 400 225'%3E%3Crect width='400' height='225'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%2364748b' font-size='14'%3ELoading...%3C/text%3E%3C/svg%3E"
+              poster="/assets/BT-0011.jpg"
             />
-            <div className="absolute top-4 right-4 bg-black/70 text-white text-sm px-3 py-1 rounded-full backdrop-blur-sm">
-              {video.duration}
-            </div>
-          </div>
-
-          {/* Minimal Info Bar */}
-          <div className="p-6 border-t border-gray-100">
-            <div className="flex items-center justify-between">
-              <h3 className="text-xl font-semibold text-gray-900">{video.title}</h3>
-              <div className="flex items-center gap-2 text-sm text-gray-500">
-                <svg
-                  className="w-4 h-4"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                HD Quality
+            
+            {/* Play Button Overlay */}
+            {!isPlaying && (
+              <div 
+                className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 cursor-pointer transition-opacity duration-300 hover:bg-opacity-25"
+                onClick={handlePlayVideo}
+              >
+                <div className="w-20 h-20 md:w-24 md:h-24 bg-white bg-opacity-95 rounded-full flex items-center justify-center shadow-lg transform transition-transform duration-300 hover:scale-110">
+                  <svg 
+                    className="w-10 h-10 md:w-12 md:h-12 text-orange-500 ml-1" 
+                    viewBox="0 0 24 24" 
+                    fill="currentColor"
+                  >
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </div>
               </div>
-            </div>
+            )}
+            
+            {/* Pause Button */}
+            {isPlaying && (
+              <button
+                className="absolute top-4 right-4 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-70 transition-colors"
+                onClick={handlePauseVideo}
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </button>
+            )}
           </div>
         </div>
 
-        {/* CTA */}
-        <div className="text-center mt-16">
-          <div className="inline-flex flex-col sm:flex-row gap-4">
+        {/* Trust & Urgency Banner with CTA */}
+        <div className="mt-16 bg-gradient-to-r from-blue-600 to-indigo-700 rounded-2xl p-6 md:p-8 shadow-xl border border-indigo-500 relative overflow-hidden">
+          {/* Decorative elements */}
+          <div className="absolute -top-10 -right-10 w-28 h-28 rounded-full bg-white opacity-10"></div>
+          <div className="absolute -bottom-8 -left-8 w-24 h-24 rounded-full bg-white opacity-10"></div>
+          
+          <div className="relative z-10 flex flex-col md:flex-row items-center justify-between">
+            {/* Trust indicators on left */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-6 md:mb-0 md:gap-8">
+              <div className="flex items-center">
+                <svg className="w-5 h-5 text-white mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
+                <span className="text-white text-sm font-medium">30-Day Guarantee</span>
+              </div>
+              <div className="flex items-center">
+                <svg className="w-5 h-5 text-white mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+                <span className="text-white text-sm font-medium">Secure Payment</span>
+              </div>
+            </div>
+            
+            {/* Center CTA Button */}
             <button
               onClick={handleScrollToPackages}
-              className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold py-4 px-10 rounded-xl transition-all duration-300 transform hover:scale-105"
+              className="bg-white text-blue-700 hover:bg-gray-100 font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center group"
             >
-              Shop Now
+              <span>Order Now - Limited Time Offer</span>
+              <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
             </button>
-            <button className="border-2 border-gray-300 hover:border-gray-400 text-gray-700 font-semibold py-4 px-10 rounded-xl transition-all duration-300 bg-white hover:bg-gray-50">
-              Learn More
-            </button>
+            
+            {/* Urgency indicator on right */}
+            <div className="hidden lg:flex items-center mt-6 md:mt-0">
+              <div className="bg-red-500 rounded-lg py-2 px-3 flex items-center">
+                <svg className="w-4 h-4 text-white mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span className="text-white text-sm font-bold">Sale Ends Soon</span>
+              </div>
+            </div>
+          </div>
+          
+          {/* Mobile urgency indicator */}
+          <div className="lg:hidden flex justify-center mt-4">
+            <div className="bg-red-500 rounded-lg py-2 px-3 flex items-center">
+              <svg className="w-4 h-4 text-white mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span className="text-white text-sm font-bold">Sale Ends Soon</span>
+            </div>
           </div>
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default VideoShowcase;
+export default VideoShowcase

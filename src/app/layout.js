@@ -3,28 +3,30 @@ import FloatingContactWidget from '@/components/FloatingContactWidget';
 
 export const metadata = {
   title: {
-    default: 'Smart Wireless-Bluetooth | Premium Earbuds',
+    default: 'Smart Wireless-Bluetooth | Noise Canceling Headset',
     template: '%s | Smart Wireless-Bluetooth'
   },
-  description: 'Premium wireless earbuds with Bluetooth 5.3, touch controls, and waterproof design.',
+  description:
+    'Smart Wireless-Bluetooth 5.3 headset with noise canceling mic, LED display, 100H battery life, ergonomic fit, and dual-device connection for seamless work and calls.',
   keywords: [
-    'Smart Wireless-Bluetooth',
-    'Bluetooth earphones',
-    'wireless earbuds',
-    'touch control',
-    'waterproof'
+    'Bluetooth 5.3 headset',
+    'wireless Bluetooth earpiece',
+    'noise canceling headset',
+    'business Bluetooth earphone',
+    'hands free Bluetooth headset'
   ],
   authors: [{ name: 'Emerald Store' }],
   openGraph: {
-    title: 'Smart Wireless-Bluetooth Earbuds',
-    description: 'Premium wireless earbuds with advanced features',
+    title: 'Smart Wireless-Bluetooth 5.3 Noise Canceling Headset',
+    description:
+      'Upgrade your calls and music with Smart Wireless-Bluetooth 5.3 headset featuring LED display, 100H battery, noise canceling mic, and ergonomic all-day comfort.',
     url: 'https://www.emeraldstore.com/',
     images: [
       {
         url: 'https://boltzmann.s3.us-east-1.amazonaws.com/Abstract/bluetooth-001.jpg',
         width: 1200,
         height: 630,
-        alt: 'Smart Wireless-Bluetooth Earbuds'
+        alt: 'Smart Wireless-Bluetooth 5.3 Headset'
       }
     ]
   }
@@ -62,7 +64,7 @@ export default function RootLayout({ children }) {
           />
         </noscript>
       </head>
-      <body className="min-h-screen bg-white">
+      <body className="min-h-screen bg-white font-poppins">
         <FloatingContactWidget />
         {children}
       </body>

@@ -1,102 +1,188 @@
 'use client'
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { CheckCircle, Battery, Ear, Smartphone, Wifi, Zap, Clock, Shield, Star } from 'lucide-react';
+import { 
+  CheckCircle, Battery, Ear, Smartphone, Wifi, Zap, Clock, 
+  Shield, Star, Droplets, MicOff, ChevronLeft, ChevronRight, Mic
+} from 'lucide-react';
 
 const PainSolution = () => {
+  const [activeIndices, setActiveIndices] = useState({});
+  
   const solutions = [
     {
       icon: <Wifi className="w-8 h-8 text-white" />,
-      img: "/assets/bluetooth-001.jpg",
-      pain: "Calls keep breaking or cutting when I'm on the road.",
+      images: ["/assets/bluetooth-001.jpg", "/assets/image-6.png", "/assets/image-9.png" ],
+      pain: "My calls always cut when I'm on the road or in traffic.",
       solution:
-        "Revolutionary Bluetooth 5.3 gives clear, stable calls with no dropouts — even in crowded places.",
+        "This new Bluetooth 5.3 gives you clear calls that no go cut — even when you dey for crowded place.",
       highlights: [
-        "No more audio cuts during calls",
-        "10m stable connection range",
-        "Pairs instantly to any device"
+        "Your audio no go cut again during calls",
+        "Connects well up to 10 meters away",
+        "Connects to your phone quick quick"
       ]
     },
     {
       icon: <Battery className="w-8 h-8 text-white" />,
-      img: "/assets/180-hrs.jpg",
-      pain: "My old earpiece battery dies in the middle of the day.",
+      images: ["/assets/180-hrs.jpg", "/assets/BT-006.jpg", "/assets/BT-OO5.jpg"],
+      pain: "My old earpiece battery always die for middle of the day.",
       solution:
-        "100H Long Standby with LED Display — track your battery and enjoy 10–12 hours nonstop use + 100 hours standby.",
+        "100H Long Standby with LED Display — you fit check your battery and use am for 10–12 hours straight + 100 hours standby.",
       highlights: [
-        "8hrs non-stop on single charge",
-        "6 full recharges from case",
-        "10min charge = 2hrs playback"
+        "8 hours straight with one charge",
+        "Case fit charge am 6 times",
+        "10 minutes charge = 2 hours music"
       ]
     },
     {
       icon: <Ear className="w-8 h-8 text-white" />,
-      img: "/assets/comfortable-fit.jpg",
-      pain: "Most earbuds hurt my ear after long use.",
+      images: ["/assets/comfortable-fit.jpg", "/assets/BT-003.jpg", "/assets/BT-010.jpg", "/assets/image-10.jpg"],
+      pain: "Other earbuds dey pain my ear after I use am for long.",
       solution:
-        "Ergonomic 12g Design with adjustable hook — soft, secure, and comfortable for all-day wear without pain.",
+        "Soft design with adjustable hook — e dey comfortable for your ear all day, no pain.",
       highlights: [
-        "3 ear tip sizes included",
-        "Light as a feather (4g each)",
-        "No ear fatigue after hours"
+        "Come with 3 different ear tip sizes",
+        "Light like feather (only 4g each)",
+        "Your ear no go pain even after many hours"
       ]
     },
     {
-      icon: <Smartphone className="w-8 h-8 text-white" />,
-      img: "/assets/dual-connection.jpg",
-      pain: "Switching between phone and laptop is stressful.",
+      icon: <Droplets className="w-8 h-8 text-white" />,
+      images: ["/assets/rev-5.jpg"],
+      pain: "Rain or sweat don spoil many earpieces when I dey exercise.",
       solution:
-        "Dual Device Connection + One-Button Control — switch instantly, no stress, no missed calls.",
+        "Waterproof and Sweatproof — your music no go stop whether rain fall or you sweat for gym.",
       highlights: [
-        "Connect to two devices at once",
-        "Seamless switching between calls",
-        "Easy controls for music and calls"
+        "Good for outdoor exercise",
+        "No fear rain or sweat",
+        "Use am anywhere without worry"
       ]
     },
+    {
+      icon: <MicOff className="w-8 h-8 text-white" />,
+      images: ["/assets/BT-004.jpg"],
+      pain: "I no fit quickly mute my mic when I dey on call.",
+      solution:
+        "One-Tap Mute Button — you go hear 'Mute On/Off' immediately so you fit control your call any where you dey.",
+      highlights: [
+        "Mute and unmute quick quick",
+        "Dey work well for office or when you dey drive",
+        "Dependable for important calls"
+      ]
+    },
+    {
+      icon: <Mic className="w-8 h-8 text-white" />,
+      images: ["/assets/BT-009.jpg", "/assets/BT-001.jpg"],
+      pain: "I need to use my hands to control phone when I dey drive.",
+      solution:
+        "Intelligent Voice Control — you fit talk to your voice assistant without touching your phone, especially when you dey drive.",
+      highlights: [
+        "Just talk to activate Siri or Google",
+        "No need to touch your phone",
+        "Safe for driving and multitasking"
+      ]
+    }
   ];
+
+
 
   const handleScroll = () => {
     const section = document.getElementById("packages");
     if (section) section.scrollIntoView({ behavior: "smooth" });
   };
 
+  const nextImage = (index) => {
+    setActiveIndices(prev => ({
+      ...prev,
+      [index]: ((prev[index] || 0) + 1) % solutions[index].images.length
+    }));
+  };
+
+  const prevImage = (index) => {
+    setActiveIndices(prev => ({
+      ...prev,
+      [index]: ((prev[index] || 0) - 1 + solutions[index].images.length) % solutions[index].images.length
+    }));
+  };
+
   return (
-    <section id="pain-solution" className="relative w-full py-12 bg-gradient-to-br from-blue-50 to-white">
+    <section id="pain-solution" className="relative w-full py-14 bg-gradient-to-br from-blue-50 to-white">
       <div className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        
         {/* Section Header */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-2 text-sm font-bold mb-6 shadow-md">
+          <div className="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-2 text-sm font-bold mb-6 shadow-md rounded-full">
             <Zap className="w-4 h-4" />
-            PROBLEM SOLVED - LIMITED TIME OFFER
+            SPECIAL OFFER – TODAY ONLY
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Your Daily Problems — <span className="text-blue-600">Solved Instantly</span>
+          <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4 leading-snug">
+            Forget Stressful Calls, <span className="text-blue-600">Enjoy Clear Conversations</span>
           </h2>
           <p className="text-lg text-gray-700 max-w-2xl mx-auto">
-            Stop struggling with inferior earbuds. Here's how we solve your everyday frustrations:
+            No more calls wey go cut, battery wey go die, or earpiece wey go pain your ear. This Bluetooth headset go make your life better — whether you dey drive, dey work, or dey move about.
           </p>
         </div>
 
-        {/* Solutions Grid 3x2 */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:grid-rows-2">
+        {/* Solutions Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {solutions.map((solution, index) => (
             <div 
               key={index}
-              className="bg-white border border-blue-100 hover:border-blue-300 hover:shadow-md transition-all duration-300"
+              className="bg-white border border-blue-100 hover:border-blue-300 hover:shadow-md transition-all duration-300 rounded-lg overflow-hidden"
             >
               <div className="w-full relative">
-                <Image 
-                  src={solution.img} 
-                  alt={solution.pain} 
-                  width={800}
-                  height={500}
-                  className="w-full h-auto object-cover"
-                  quality={100}
-                />
-                <div className="absolute top-4 left-4 bg-blue-600 p-2 shadow-md">
-                  {solution.icon}
+                {/* Image container with full display */}
+                <div className="w-full relative">
+                  <Image 
+                    src={solution.images[activeIndices[index] || 0]} 
+                    alt={solution.pain} 
+                    width={800}
+                    height={600}
+                    className="object-cover w-full h-auto"
+                    quality={100}
+                  />
+                  
+                  {/* Navigation arrows for multiple images */}
+                  {solution.images.length > 1 && (
+                    <>
+                      <button 
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          prevImage(index);
+                        }}
+                        className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/30 text-white p-1 rounded-full hover:bg-black/50 transition-all"
+                      >
+                        <ChevronLeft className="w-5 h-5" />
+                      </button>
+                      <button 
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          nextImage(index);
+                        }}
+                        className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/30 text-white p-1 rounded-full hover:bg-black/50 transition-all"
+                      >
+                        <ChevronRight className="w-5 h-5" />
+                      </button>
+                    </>
+                  )}
+                  
+                  <div className="absolute top-4 left-4 bg-blue-600 p-2 shadow-md rounded-md">
+                    {solution.icon}
+                  </div>
                 </div>
+                
+                {/* Image indicators for multiple images */}
+                {solution.images.length > 1 && (
+                  <div className="absolute bottom-2 left-0 right-0 flex justify-center gap-1">
+                    {solution.images.map((_, i) => (
+                      <div 
+                        key={i}
+                        className={`w-2 h-2 rounded-full ${i === (activeIndices[index] || 0) ? 'bg-white' : 'bg-white/50'}`}
+                      />
+                    ))}
+                  </div>
+                )}
               </div>
               
               <div className="p-4">
@@ -119,12 +205,12 @@ const PainSolution = () => {
         {/* Trust Badges */}
         <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto">
           {[
-            { text: "Free Delivery", subtext: "Nationwide coverage", icon: <Zap className="w-5 h-5" />, color: "bg-blue-600" },
-            { text: "6-Month Warranty", subtext: "No questions asked", icon: <Shield className="w-5 h-5" />, color: "bg-green-600" },
-            { text: "30-Day Returns", subtext: "Money-back guarantee", icon: <Clock className="w-5 h-5" />, color: "bg-red-600" },
-            { text: "500+ Reviews", subtext: "Verified purchases", icon: <Star className="w-5 h-5" />, color: "bg-purple-600" }
+            { text: "Free Delivery", subtext: "We deliver everywhere for Nigeria", icon: <Zap className="w-5 h-5" />, color: "bg-blue-600" },
+            { text: "6-Month Warranty", subtext: "No long story", icon: <Shield className="w-5 h-5" />, color: "bg-green-600" },
+            { text: "30-Day Returns", subtext: "We go return your money", icon: <Clock className="w-5 h-5" />, color: "bg-red-600" },
+            { text: "500+ Reviews", subtext: "Our customers dey happy", icon: <Star className="w-5 h-5" />, color: "bg-purple-600" }
           ].map((item, i) => (
-            <div key={i} className={`${item.color} text-white p-4 text-center shadow-sm flex flex-col items-center`}>
+            <div key={i} className={`${item.color} text-white p-4 text-center shadow-sm flex flex-col items-center rounded-md`}>
               <div className="mb-2">{item.icon}</div>
               <p className="font-bold text-sm">{item.text}</p>
               <p className="text-white/90 text-xs">{item.subtext}</p>
@@ -134,10 +220,12 @@ const PainSolution = () => {
 
         {/* CTA Button */}
         <div className="mt-10 text-center">
-          <button className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-3 px-6 text-base shadow-md transform hover:scale-105 transition-all duration-300 flex items-center justify-center mx-auto"
-            onClick={handleScroll}>
+          <button 
+            className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-3 px-6 text-base shadow-md transform hover:scale-105 transition-all duration-300 flex items-center justify-center mx-auto rounded-lg"
+            onClick={handleScroll}
+          >
             <Zap className="w-5 h-5 mr-2" />
-            GET YOURS NOW - 50% OFF TODAY ONLY
+            BUY NOW – 50% OFF TODAY ONLY
           </button>
         </div>
       </div>

@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from "react";
-import { Users, Shield, Truck, ShoppingCart, PlayCircle, CreditCard } from "lucide-react";
+import { Users, Shield, Truck, ShoppingCart, PlayCircle, CreditCard, Timer } from "lucide-react";
 
 const SalesHeader = () => {
   const [timeLeft, setTimeLeft] = useState(3600); // 1 hour countdown
@@ -26,10 +26,11 @@ const SalesHeader = () => {
 
   return (
     <div className="w-full">
-      {/* 🔥 Urgency + Trust Banner */}
-      <div className="w-full bg-orange-600 text-white py-3 px-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-sm font-medium">
-        <div className="flex items-center gap-2">
-          ⏰ Hurry! Offer ends in <span className="font-bold">{formatTime(timeLeft)}</span>
+      {/* Urgency + Trust Banner */}
+      <div className="w-full bg-gradient-to-r from-orange-600 to-red-500 text-white py-3 px-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-sm font-medium shadow-md">
+        <div className="flex items-center gap-2 font-semibold">
+          <Timer size={16} className="text-white" />
+          <span>Hurry! Offer ends in {formatTime(timeLeft)}</span>
         </div>
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-1">
@@ -47,24 +48,24 @@ const SalesHeader = () => {
       <div className="bg-gradient-to-b from-blue-50 to-white py-10 md:py-16 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto text-center">
           {/* Main Headline */}
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-5 leading-tight">
-            Say Goodbye to Background Noise
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-5 leading-tight">
+            Say Goodbye to Background Noise.
             <span className="block text-blue-600 mt-3">
-              Connects to 2 devices at the same time (your phone + laptop)
+              Connects to your phone and laptop at the same time.
             </span>
           </h1>
 
           {/* Subheading */}
           <p className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto mb-8 leading-relaxed">
-            Enjoy crystal-clear calls anywhere, even in noisy places.  
-            Switch smoothly between your phone and laptop.  
-            Control calls, music, and volume with one simple button.
+            Talk without shouting, even in noisy places.  
+            Move easily between your phone and laptop.  
+            Control calls, music, and volume with just one button.
           </p>
 
           {/* Key Benefits Grid with Product Image Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10 max-w-4xl mx-auto">
-            {/* Card 1 - Crystal Clear Sound */}
-            <div className="bg-white overflow-hidden border border-gray-200 shadow-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+            {/* Card 1 - Clear Sound */}
+            <div className="bg-white overflow-hidden border border-gray-200 shadow-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1 rounded-xl">
               <div className="w-full">
                 <img 
                   src="/header/BT-008.jpg" 
@@ -73,13 +74,13 @@ const SalesHeader = () => {
                 />
               </div>
               <div className="p-5">
-                <h3 className="text-gray-900 font-semibold mb-2 text-lg">Crystal Clear Sound</h3>
-                <p className="text-gray-600">Noise reduction tech makes your voice sharp and clear on every call.</p>
+                <h3 className="text-gray-900 font-semibold mb-2 text-lg">Clear Sound</h3>
+                <p className="text-gray-600">Noise cancellation makes your voice sharp and easy to hear, no matter where you are.</p>
               </div>
             </div>
             
             {/* Card 2 - Dual Connection */}
-            <div className="bg-white overflow-hidden border border-gray-200 shadow-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+            <div className="bg-white overflow-hidden border border-gray-200 shadow-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1 rounded-xl">
               <div className="w-full">
                 <img 
                   src="/header/BT-007.jpg" 
@@ -88,13 +89,13 @@ const SalesHeader = () => {
                 />
               </div>
               <div className="p-5">
-                <h3 className="text-gray-900 font-semibold mb-2 text-lg">Dual Connection</h3>
-                <p className="text-gray-600">Stay connected to your phone and laptop at the same time, no switching hassle.</p>
+                <h3 className="text-gray-900 font-semibold mb-2 text-lg">2 Devices at Once</h3>
+                <p className="text-gray-600">Pick up a call on your phone, then jump back to your laptop — no need to disconnect.</p>
               </div>
             </div>
             
             {/* Card 3 - One-Touch Control */}
-            <div className="bg-white overflow-hidden border border-gray-200 shadow-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+            <div className="bg-white overflow-hidden border border-gray-200 shadow-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1 rounded-xl">
               <div className="w-full">
                 <img 
                   src="/header/MFK.jpg" 
@@ -104,7 +105,7 @@ const SalesHeader = () => {
               </div>
               <div className="p-5">
                 <h3 className="text-gray-900 font-semibold mb-2 text-lg">One-Touch Control</h3>
-                <p className="text-gray-600">Easily manage calls, music, and volume with one smart button.</p>
+                <p className="text-gray-600">Answer calls, change music, or adjust sound with one simple button.</p>
               </div>
             </div>
           </div>
@@ -130,11 +131,11 @@ const SalesHeader = () => {
           <div className="flex flex-col sm:flex-row justify-center items-center gap-6 text-gray-600 text-sm">
             <div className="flex items-center">
               <Users className="text-blue-600 mr-2" />
-              <span>15,000+ Happy Customers</span>
+              <span>Over 15,000 Happy Customers</span>
             </div>
             <div className="flex items-center">
               <Shield className="text-blue-600 mr-2" />
-              <span>6-Months Warranty</span>
+              <span>6-Month Warranty</span>
             </div>
             <div className="flex items-center">
               <Truck className="text-blue-600 mr-2" />
