@@ -67,7 +67,7 @@ const SalesHeader = () => {
             <div className="bg-white overflow-hidden border border-gray-200 shadow-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
               <div className="w-full">
                 <img 
-                  src="/header/Noise-Reduction.jpg" 
+                  src="/header/BT-008.jpg" 
                   alt="Noise cancellation technology" 
                   className="w-full h-auto object-contain"
                 />
@@ -82,7 +82,7 @@ const SalesHeader = () => {
             <div className="bg-white overflow-hidden border border-gray-200 shadow-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
               <div className="w-full">
                 <img 
-                  src="/header/connect-twice.jpg" 
+                  src="/header/BT-007.jpg" 
                   alt="Dual device connection" 
                   className="w-full h-auto object-contain"
                 />
