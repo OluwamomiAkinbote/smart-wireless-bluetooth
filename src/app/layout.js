@@ -44,7 +44,7 @@ export default function RootLayout({ children }) {
         <FloatingContactWidget />
         {children}
 
-        {/* ✅ Proper Pixel script */}
+        {/* ✅ Facebook Pixel Script */}
         <Script id="facebook-pixel" strategy="afterInteractive">
           {`
             !function(f,b,e,v,n,t,s)
@@ -60,7 +60,7 @@ export default function RootLayout({ children }) {
           `}
         </Script>
 
-        {/* ✅ NoScript fallback */}
+        {/* ✅ NoScript Fallback */}
         <noscript>
           <img
             height="1"
